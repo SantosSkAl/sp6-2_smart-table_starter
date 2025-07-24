@@ -26,9 +26,9 @@ export const initPagination = ({pages, fromRow, toRow, totalRows}, createPage) =
             return createPage(el, pageNumber, pageNumber === page);     // вызываем колбэк из настроек, чтобы заполнить кнопку данными
         }))
         // @todo: #2.5 — обновить статус пагинации
-        fromRow.textContent = (page - 1) * rowsPerPage;        // С какой строки выводим
-        toRow.textContent = page * rowsPerPage;                // До какой строки выводим
-        totalRows.textContent = data.length;                   // Сколько всего строк выводим на всех страницах вместе (после фильтрации будет меньше)
+        fromRow.textContent = (page - 1) * rowsPerPage;                  // С какой строки выводим
+        toRow.textContent = Math.min((page * rowsPerPage), data.length); // До какой строки выводим
+        totalRows.textContent = data.length;                             // Сколько всего строк выводим на всех страницах вместе (после фильтрации будет меньше)
 
         // @todo: #2.2 — посчитать сколько строк нужно пропустить и получить срез данных
         const skip = (page - 1) * rowsPerPage;            // сколько строк нужно пропустить

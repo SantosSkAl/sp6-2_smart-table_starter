@@ -16,7 +16,7 @@ export function initFiltering(elements, indexes) {
                     return option;   // @todo: создать и вернуть тег опции
                 })
         )
-     })
+      })
 
     return (data, state, action) => {
         // @todo: #4.2 — обработать очистку поля

@@ -49,6 +49,7 @@ export function processFormData(formData) {
         result[key] = value;
         return result;
     }, {});
+    // return Object.fromEntries(formData.entries()) - в данном случае тоже самое, но редьюс гибкий и можно модифицировать
 }
 
 /**

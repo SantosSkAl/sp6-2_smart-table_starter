@@ -42,15 +42,16 @@ export function initTable(settings, onAction) {
             const row = cloneTemplate(rowTemplate)
             Object.keys(item).forEach(key => {
                 if (key in row.elements) row.elements[key].textContent = item[key]
+                // elements[key] — это просто ссылки на узлы, которые УЖЕ находятся внутри container
             })
             // console.log(row.elements)
-            // при обновлении элементов контейнер тоже обновился?
+            // при обновлении элементов контейнер тоже обновился
             return row.container
         });
         // console.log(nextRows)
         root.elements.rows.replaceChildren(...nextRows);
     }
-    console.log(root)
+    // console.log(root)
 
     return {...root, render};  // юзаем спред, чтобы добавить метод render к уже существующему обьекту (root) не мутируя его
 

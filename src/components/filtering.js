@@ -26,9 +26,19 @@ export function initFiltering(elements, indexes) {
             const fieldName = action.dataset.field
             state[fieldName] = ''
         }
+        // делаем из totalFrom и totalTo (если имеются) массив и сохраняем его с ключом total
+        const filterState = { ...state }; // Создаём копию состояния, чтобы не мутировать исходный state
+        const from = state.totalFrom
+        const to = state.totalTo
+        if (from || to) {
+            filterState.total = [from ? Number(from) : null, to ? Number(to) : null]
+            delete filterState.totalFrom
+            delete filterState.totalTo
+        }
 
         // @todo: #4.5 — отфильтровать данные используя компаратор
-        return data.filter(row => compare(row, state));
+        return data.filter(row => compare(row, filterState));
+        // return data.filter(row => compare(row, state));
         // return data;
     }
 }
